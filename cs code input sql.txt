@@ -1,0 +1,9 @@
+INSERT INTO MOVIES VALUES(1, "MAVERICK", "B", "22 JUN", "|12:30pm|", 38), (2, "VIKRAM", "A", "19 JUN", "|2:00pm|", 35), (3, "THE BLACK PHONE", "C", "23 JUN", "|5:30PM|", 30), (4, "HEAVEN", "A", "4 JUN", "|3:00pm|", 25), (5,"MAAYON", "B", "22 JUN", "|5:30pm|", 28), (6, "KINGSLAYER", "c", "14 JUN", "|6:00pm|", 28), (7, "TWENTY ONE GMS", "A", "17 JUN", "|4:30pm|", 25);
+
+mysql> create table movies (s_no int primary key not null auto_increment, MOVIES VARCHAR(100), HALL VARCHAR(50),DATE VARCHAR (50), TIMING VARCHAR(50), CHARGES INT);
+
+mysql> create table customer_details(s_no int primary key not null auto_increment,nam char(100),pn int(50), em varchar(100), movie varchar(100));
+
+create database eldorado_booking;
+
+use eldorado_booking;
