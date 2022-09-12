@@ -155,12 +155,61 @@ def sort():
     print("Printed Successfully!!")
 
 
+def login():  # Log in the user
+    login_username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    cursor.execute("SELECT username, password FROM auth")
+    rs = cursor.fetchall()
 
-    
+    if len(rs) == 0:
+        sys.exit("Username doesn't exist!")
 
-    
+    while True:
+
+        for i in rs:
+            if i[0] == login_username and i[1] == password:
+                print("Login successful!")
+                print("Hello,", login_username + "!" "\n")
+
+            elif i[0] != login_username or i[1] != password:
+                sys.exit("Username or password is incorrect!")
+
+        break
+
+def register_customer():  # Register a new customer
+    name = input("Enter your Full Name: ")
+    email = input("Enter your email: ")
+    phone_number = input("Enter your phone number in international format: ")
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    db.execute("INSERT INTO customers(name, email, phone_number, username, country_code) VALUES(%s, %s, %s, %s)",
+               (name, email, phone_number, username))
+    cdb.commit()
+    db.execute("INSERT INTO auth VALUES(%s, %s)", (username, password))
+    conn.commit()
+
 
 while True:
+    print("""
+    +-----------------------+
+    |   ELDORADO BOOKING    |
+    +-----------------------+
+    | 1. SIGN UP            |
+    | 2. SIGN IN            |
+    +-----------------------+ 
+    """)
+    ch1 = int(input("Enter your choice: "))
+    if ch1 == 1:
+        register_customer()
+        v = input("Would you like to continue? (y/n): ")
+        if v.lower() != 'y':
+            break
+        
+    
+    elif ch1 == 2:
+        login()
+
+
     print("""
 +-----------------------+
 |   ELDORADO BOOKING    |
